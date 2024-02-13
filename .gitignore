@@ -1,6 +1,30 @@
-/dist
+# /dist
 /build
 .vercel
 /ui/preview
 /ui/src/extensions
 .DS_Store
+# TS build info
+*.tsbuildinfo
+
+# Output of `yarn build` command.
+# /api
+# /commands
+# /utils
+# /types
+# /loaders
+# /setup
+# /lib
+
+# Platform-specific files
+.DS_Store
+Thumbs.db
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+
+# Local dev preview
+/dashboard/dist
