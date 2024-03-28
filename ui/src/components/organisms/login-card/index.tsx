@@ -1,21 +1,21 @@
-import { useAdminLogin } from "medusa-react"
-import { useForm } from "react-hook-form"
-import { useNavigate } from "react-router-dom"
-import { useWidgets } from "../../../providers/widget-provider"
-import { useTranslation } from "react-i18next"
-import InputError from "../../atoms/input-error"
-import WidgetContainer from "../../extensions/widget-container"
-import Button from "../../fundamentals/button"
-import SigninInput from "../../molecules/input-signin"
+import { useAdminLogin } from "medusa-react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { useWidgets } from "../../../providers/widget-provider";
+import { useTranslation } from "react-i18next";
+import InputError from "../../atoms/input-error";
+import WidgetContainer from "../../extensions/widget-container";
+import Button from "../../fundamentals/button";
+import SigninInput from "../../molecules/input-signin";
 
 type FormValues = {
-  email: string
-  password: string
-}
+  email: string;
+  password: string;
+};
 
 type LoginCardProps = {
-  toResetPassword: () => void
-}
+  toResetPassword: () => void;
+};
 
 const LoginCard = ({ toResetPassword }: LoginCardProps) => {
   const {
@@ -23,17 +23,17 @@ const LoginCard = ({ toResetPassword }: LoginCardProps) => {
     handleSubmit,
     setError,
     formState: { errors },
-  } = useForm<FormValues>()
-  const navigate = useNavigate()
-  const { mutate, isLoading } = useAdminLogin()
-  const { t } = useTranslation()
+  } = useForm<FormValues>();
+  const navigate = useNavigate();
+  const { mutate, isLoading } = useAdminLogin();
+  const { t } = useTranslation();
 
-  const { getWidgets } = useWidgets()
+  const { getWidgets } = useWidgets();
 
   const onSubmit = (values: FormValues) => {
     mutate(values, {
       onSuccess: () => {
-        navigate("/a/orders")
+        navigate("/a/orders");
       },
       onError: () => {
         setError(
@@ -48,10 +48,10 @@ const LoginCard = ({ toResetPassword }: LoginCardProps) => {
           {
             shouldFocus: true,
           }
-        )
+        );
       },
-    })
-  }
+    });
+  };
   return (
     <div className="gap-y-large flex flex-col">
       {getWidgets("login.before").map((w, i) => {
@@ -62,12 +62,12 @@ const LoginCard = ({ toResetPassword }: LoginCardProps) => {
             injectionZone="login.before"
             entity={undefined}
           />
-        )
+        );
       })}
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col items-center">
           <h1 className="inter-xlarge-semibold text-grey-90 mb-large text-[20px]">
-            {t("login-card-log-in-to-medusa", "Log in to Medusa")}
+            {t("login-card-log-in-to-medusa", "Log in to railsAfrica")}
           </h1>
           <div>
             <SigninInput
@@ -95,11 +95,24 @@ const LoginCard = ({ toResetPassword }: LoginCardProps) => {
             Continue
           </Button>
           <span
-            className="inter-small-regular text-grey-50 mt-8 cursor-pointer"
+            className="inter-small-regular text-grey-50 mt-2 cursor-pointer"
             onClick={toResetPassword}
           >
             {t("login-card-forgot-your-password", "Forgot your password?")}
           </span>
+          <span className="inter-small-regular text-grey-50 mt-8 cursor-none">
+            OR
+          </span>
+          <Button
+            className="rounded-rounded inter-base-regular mt-4 w-[280px]"
+            variant="secondary"
+            size="medium"
+            onClick={() => {
+              navigate("/signup");
+            }}
+          >
+            Sign Up
+          </Button>
         </div>
       </form>
       {getWidgets("login.after").map((w, i) => {
@@ -110,10 +123,10 @@ const LoginCard = ({ toResetPassword }: LoginCardProps) => {
             injectionZone="login.after"
             entity={undefined}
           />
-        )
+        );
       })}
     </div>
-  )
-}
+  );
+};
 
-export default LoginCard
+export default LoginCard;

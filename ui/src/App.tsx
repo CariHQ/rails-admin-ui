@@ -8,6 +8,7 @@ import {
 import Spinner from "./components/atoms/spinner";
 import { AnalyticsProvider } from "./providers/analytics-provider";
 import { WRITE_KEY } from "./constants/analytics";
+import SignUpPage from "./pages/signup";
 
 const NotFound = lazy(() => import("./pages/404"));
 const Dashboard = lazy(() => import("./pages/a"));
@@ -38,6 +39,7 @@ const router = createBrowserRouter(
             }
          />
          <Route path="login" element={<LoginPage />} />
+         <Route path="signUp" element={<SignUpPage />} />
          <Route path="register" element={<RegisterPage />} />
          <Route path="reset-password" element={<ResetPasswordPage />} />
          <Route path="*" element={<NotFound />} />

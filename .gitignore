@@ -22,9 +22,10 @@ Thumbs.db
 
 # Yarn Integrity file
 .yarn-integrity
+.yarn
 
 # dotenv environment variables file
 .env
-
+node_modules
 # Local dev preview
 /dashboard/dist
