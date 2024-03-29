@@ -10,6 +10,7 @@ import SigninInput from "../../molecules/input-signin";
 import { useEffect, useRef, useState } from "react";
 import { boolean } from "zod";
 import { UseMutateFunction } from "@tanstack/react-query";
+import { MEDUSA_BACKEND_URL } from "../../../constants/medusa-backend-url";
 
 type FormValues = {
 	email: string;
@@ -51,7 +52,7 @@ const useSign = (
 		);
 	}
 
-	fetch("http://localhost:9000/auth/signup", {
+	fetch(MEDUSA_BACKEND_URL + "/auth/signup", {
 		mode: "cors",
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
@@ -116,7 +117,7 @@ const SignUp = ({ toResetPassword }: LoginCardProps) => {
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<div className="flex flex-col items-center">
 					<h1 className="inter-xlarge-semibold text-grey-90 mb-large text-[20px]">
-						{"signUp to railsAfrica"}
+						{"signUp to Rails"}
 					</h1>
 					<div>
 						<SigninInput
