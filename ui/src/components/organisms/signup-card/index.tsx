@@ -52,7 +52,7 @@ const useSign = (
 		);
 	}
 
-	fetch(MEDUSA_BACKEND_URL + "/auth/signup", {
+	fetch( + "/auth/signup", {
 		mode: "cors",
 		method: "POST",
 		headers: { "Content-Type": "application/json" },

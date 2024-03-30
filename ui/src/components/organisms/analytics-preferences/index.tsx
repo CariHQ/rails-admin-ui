@@ -50,7 +50,7 @@ const AnalyticsPreferencesModal = () => {
 	});
 
 	const onSubmit = form.handleSubmit((data) => {
-		setSubmittingConfig(false);
+		setSubmittingConfig(true);
 		const { email, config } = data;
 
 		const shouldTrackEmail = !config.anonymize && !config.opt_out;
