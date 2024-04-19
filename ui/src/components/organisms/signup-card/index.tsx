@@ -37,7 +37,9 @@ const useSign = (
 		email: props.email,
 		password: props.password,
 	};
-	console.log(submitForm);
+	
+	const url = MEDUSA_BACKEND_URL + (MEDUSA_BACKEND_URL === "/" ? "" : "/") + "auth/signup"
+	console.log(url);
 	if (props.matchpassword !== props.password) {
 		setisLoading(false);
 		return setError(
@@ -52,7 +54,7 @@ const useSign = (
 		);
 	}
 
-	fetch(MEDUSA_BACKEND_URL + "/auth/signup", {
+	fetch(url, {
 		mode: "cors",
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
@@ -77,6 +79,18 @@ const useSign = (
 			},
 		});
 		return;
+	}).catch(err => {
+		setisLoading(false);
+		return setError(
+			"password",
+			{
+				type: "invalid_data",
+				message: "Internal server Error check again later",
+			},
+			{
+				shouldFocus: true,
+			}
+		);
 	});
 };
 
@@ -117,7 +131,7 @@ const SignUp = ({ toResetPassword }: LoginCardProps) => {
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<div className="flex flex-col items-center">
 					<h1 className="inter-xlarge-semibold text-grey-90 mb-large text-[20px]">
-						{"signUp to Rails"}
+						{"Sign up to Rails"}
 					</h1>
 					<div>
 						<SigninInput
